@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nạp Firmware Xe Ba Gác - ESP32-S3</title>
+  <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 40px 20px;
+      background: #f0f2f5;
+      color: #1a1a1a;
+    }
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+    h1 { font-size: 1.5rem; margin: 0 0 8px; }
+    .sub { color: #666; margin-bottom: 24px; }
+    .badge {
+      display: inline-block;
+      background: #e8f0fe;
+      color: #1a56db;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      margin-bottom: 20px;
+    }
+    .steps {
+      text-align: left;
+      background: #f8f9fa;
+      border-radius: 8px;
+      padding: 18px 22px;
+      margin: 24px 0;
+      font-size: 0.93rem;
+      line-height: 1.9;
+    }
+    .steps b { color: #1a56db; }
+    esp-web-install-button::part(button) {
+      font-size: 1.05rem;
+      padding: 12px 28px;
+    }
+    .warn {
+      font-size: 0.85rem;
+      color: #92400e;
+      background: #fef3c7;
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 20px;
+      text-align: left;
+      line-height: 1.6;
+    }
+    .footer { color: #999; font-size: 0.8rem; margin-top: 28px; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="badge">ESP32-S3</div>
+    <h1>🛺 Nạp Firmware Xe Ba Gác</h1>
+    <p class="sub">Nạp trực tiếp từ trình duyệt, không cần cài phần mềm</p>
+
+    <div class="steps">
+      <b>Bước 1.</b> Cắm ESP32-S3 vào máy tính bằng cáp USB (cáp truyền data, không phải cáp chỉ sạc)<br>
+      <b>Bước 2.</b> Dùng trình duyệt <b>Chrome</b> hoặc <b>Edge</b> (Firefox/Safari không hỗ trợ)<br>
+      <b>Bước 3.</b> Bấm nút <b>CONNECT</b> bên dưới → chọn cổng COM của board → <b>Install Xe Ba Gac Firmware</b><br>
+      <b>Bước 4.</b> Chờ nạp xong (file ~9.6MB nên mất vài phút), board tự khởi động lại
+    </div>
+
+    <esp-web-install-button manifest="manifest.json">
+      <button slot="activate" style="
+        background:#1a56db; color:#fff; border:none;
+        font-size:1.05rem; font-weight:600;
+        padding:14px 36px; border-radius:8px; cursor:pointer;">
+        ⚡ CONNECT & NẠP FIRMWARE
+      </button>
+      <span slot="unsupported" style="color:#b91c1c">
+        Trình duyệt này không hỗ trợ. Hãy dùng Chrome hoặc Edge trên máy tính.
+      </span>
+      <span slot="not-allowed" style="color:#b91c1c">
+        Trang phải chạy qua HTTPS (hoặc localhost) mới nạp được.
+      </span>
+    </esp-web-install-button>
+
+    <div class="warn">
+      ⚠️ <b>Không thấy cổng COM?</b> Giữ nút <b>BOOT</b> trên board, nhấn nút <b>RESET</b>, rồi thả BOOT — board sẽ vào chế độ nạp.<br>
+      ⚠️ Nếu dùng cổng USB-OTG của S3: sau khi nạp xong cổng có thể tự ngắt — đó là bình thường, rút ra cắm lại là chạy.
+    </div>
+
+    <p class="footer">Firmware v1.0.0 · Build ESP-IDF v5.5.1 · Nạp tại địa chỉ 0x0</p>
+  </div>
+</body>
+</html>
